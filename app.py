@@ -4,8 +4,8 @@ import cv2
 app = Flask(__name__)
 
 def find_camera(id):
-    cameras = ['rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp',
-    'rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp']
+    cameras = ['rtsp://username:password@ip_address:554/user=username_password="password"_channel=channel_number_stream=0.sdp',
+    'rtsp://username:password@ip_address:554/user=username_password="password"_channel=channel_number_stream=0.sdp']
     return cameras[int(id)]
 #  for cctv camera use rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp' instead of camera
 #  for webcam use zero(0)
@@ -31,7 +31,7 @@ def gen_frames(camera_id):
 
 @app.route('/video_feed/<string:id>/', methods=["GET"])
 def video_feed(id):
-   
+
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen_frames(id),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -41,6 +41,5 @@ def video_feed(id):
 def index():
     return render_template('index.html')
 
-
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

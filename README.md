@@ -1,11 +1,12 @@
 ## Multiple CCTV/RTSP Streaming with Flask and Open-CV
+
+Configure your **rtsp** urls on `app.py` file
+
+### Run docker-compose
 ```sh
-pip install -r requirements.txt
+docker-compose up
 ```
-### Run Server
-```sh
-app.py
-```
+---
 #### Use Built-in Webcam of Laptop
 ##### Put Zero (O) in cv2.VideoCapture(0)
 ```sh
